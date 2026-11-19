@@ -1,34 +1,42 @@
-# World Domination Duel
+# World Domination Duel — Arcade Fighter
 
-A funny, local 2-player browser fighting game featuring fictionalized, emoji-style parody avatars of public figures.
+A browser-based, local two-player arcade fighting game starring fictionalized parody fighters inspired by public figures. The combat uses familiar 2D fighting-game concepts: footsies, guarding, attack startup/active/recovery, hit-stun, knockback, meter, specials, combos and best-of-three rounds.
 
-## Run locally
-1. Download and unzip the project.
-2. Open `index.html` in a modern browser.
-
-For a local development server, run:
+## Play locally
+Open `index.html` in a modern browser, or serve the folder:
 ```bash
 python -m http.server 8000
 ```
 Then visit `http://localhost:8000`.
 
-## Deploy to Netlify
-**Option A — drag and drop**
-1. Go to [Netlify Drop](https://app.netlify.com/drop).
-2. Drag the unzipped project folder onto the page.
-3. Netlify will publish the site and provide a URL.
-
-**Option B — GitHub**
-1. In Netlify, choose **Add new site → Import an existing project** and connect this repository.
-2. Build command: leave blank.
-3. Publish directory: `.`
-
-No build step, server, API key, or environment variables are required.
-
 ## Controls
-- Player 1: A/D move, W jump, F attack.
-- Player 2: Left/Right move, Up jump, L attack.
-- Mobile: use the on-screen buttons.
+
+| Action | Player 1 | Player 2 |
+|---|---|---|
+| Move | A / D | Left / Right |
+| Jump | W | Up |
+| Crouch | S | Down |
+| Block | Q | I |
+| Light attack | F | J |
+| Heavy attack | G | K |
+| Special | H | L |
+
+Special moves cost 50 meter. Build meter by landing hits or guarding. Heavy attacks hit harder but have more recovery; a blocked or missed heavy can be punished. Land a hit and cancel into another move to extend a combo. Low attacks are best guarded while crouching.
+
+## Match
+- Local two-player versus.
+- First to two round wins takes the match.
+- 99-second rounds; the higher remaining health wins on timeout.
+- Three arenas: Emergency Summit, Neon Capital and Orbital Boardroom.
+- Mobile touch controls are included.
+
+## Deploy to Netlify
+This is a static site; no build command, server, API keys or environment variables are needed.
+1. In Netlify, choose **Add new site → Import an existing project**.
+2. Connect this GitHub repository.
+3. Production branch: `main`.
+4. Build command: leave blank.
+5. Publish directory: `.`.
 
 ## Notes
-This is a fictional parody game. Character names, catchlines, and descriptions are comedic inventions and are not real quotes, endorsements, or claims. Avatars use emoji rather than official portraits or logos.
+All character names, appearances, catchlines and descriptions are fictionalized parody. They are not real quotes, endorsements or claims. The game uses original canvas-drawn characters and does not use official portraits or logos.
