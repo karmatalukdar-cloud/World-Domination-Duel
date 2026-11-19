@@ -2,78 +2,118 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#11111b">
-  <title>World Domination Duel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b13">
+  <title>World Domination Duel — Arcade Fighter</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="noise"></div>
+  <div class="scanlines"></div>
   <header class="topbar">
-    <a class="brand" href="#"><span class="brand-mark">✳</span> WORLD DOMINATION <b>DUEL</b></a>
-    <div class="top-meta"><span class="live-dot"></span> TOTALLY UNOFFICIAL ARENA <span class="version">v1.0</span></div>
+    <a class="logo" href="#"><span class="logo-mark">W</span><span>WORLD DOMINATION <b>DUEL</b></span></a>
+    <div class="top-right"><span class="status-dot"></span> ARCADE BUILD <span class="ver">02.0</span></div>
   </header>
 
-  <main>
+  <main class="page">
     <section class="hero">
-      <div class="eyebrow">THE G7 OF GETTING COOKED</div>
-      <h1>BIG EGOS.<br><span>BIGGER</span> HITBOXES.</h1>
-      <p class="intro">Two icons enter. One leaves with their approval rating in the bin.<br>Pick your public figure. Settle absolutely nothing.</p>
+      <div class="eyebrow"><span></span> THE WORLD IS YOUR FIGHT CLUB</div>
+      <h1>SETTLE IT<br><em>IN THE RING.</em></h1>
+      <p>Big names. Bigger combos. Absolutely no diplomatic immunity.</p>
     </section>
 
-    <section class="arena-shell">
-      <div class="arena-head">
-        <div><span class="eyebrow">01 / SELECT YOUR MENACE</span><h2>Choose your fighter</h2></div>
-        <div class="round-chip">LOCAL 2-PLAYER <span>●</span></div>
+    <section class="cabinet" id="cabinet">
+      <div class="cabinet-top">
+        <div><span class="section-id">01 / SELECT YOUR FIGHTERS</span><h2>Choose your fighter</h2></div>
+        <div class="mode-tag">LOCAL VERSUS <span>● 2 PLAYERS</span></div>
       </div>
-      <div class="selection-grid">
-        <div class="player-select p1">
-          <div class="player-label"><span class="player-number">P1</span> PLAYER ONE <small>WASD TO MOVE · F TO ATTACK</small></div>
-          <div class="selected-preview" id="preview1"><div class="big-avatar">🦅</div><div><b id="name1">The Donald</b><small id="role1">CEO of Caps Lock</small></div></div>
+      <div class="selection">
+        <div class="select-side side-one">
+          <div class="side-heading"><b>PLAYER 1</b><span>CHALLENGER A</span></div>
+          <div class="chosen" id="chosen1"><div class="chosen-icon">🦅</div><div><b id="chosenName1">The Donald</b><small id="chosenTag1">THE ART OF THE DEAL</small></div></div>
           <div class="roster" id="roster1"></div>
+          <div class="select-controls">MOVE <kbd>A</kbd><kbd>D</kbd> · JUMP <kbd>W</kbd></div>
         </div>
-        <div class="vs-mark">VS<span>✦</span></div>
-        <div class="player-select p2">
-          <div class="player-label"><span class="player-number">P2</span> PLAYER TWO <small>ARROWS TO MOVE · L TO ATTACK</small></div>
-          <div class="selected-preview" id="preview2"><div class="big-avatar">🚀</div><div><b id="name2">Elon Musk</b><small id="role2">CEO of Reply Guys</small></div></div>
+        <div class="versus"><span>VS</span><i>✦</i></div>
+        <div class="select-side side-two">
+          <div class="side-heading"><b>PLAYER 2</b><span>CHALLENGER B</span></div>
+          <div class="chosen" id="chosen2"><div class="chosen-icon">🚀</div><div><b id="chosenName2">Elon Musk</b><small id="chosenTag2">FINAL BOSS OF REPLIES</small></div></div>
           <div class="roster" id="roster2"></div>
+          <div class="select-controls">MOVE <kbd>←</kbd><kbd>→</kbd> · JUMP <kbd>↑</kbd></div>
         </div>
       </div>
-      <div class="match-controls">
-        <div class="stage-picker"><label for="stage">BATTLEFIELD</label><select id="stage"><option value="summit">Emergency World Summit</option><option value="boardroom">The Boardroom</option><option value="moon">Moon Meeting Room</option></select></div>
-        <button id="startBtn" class="start-btn">START THE NONSENSE <span>↗</span></button>
+      <div class="cabinet-bottom">
+        <label class="stage-select">ARENA
+          <select id="stageSelect">
+            <option value="summit">THE EMERGENCY SUMMIT</option>
+            <option value="neon">NEON CAPITAL</option>
+            <option value="moon">ORBITAL BOARDROOM</option>
+          </select>
+        </label>
+        <div class="best-of">MATCH FORMAT <b>BEST OF 3 ROUNDS</b></div>
+        <button class="play-btn" id="startBtn">ENTER THE ARENA <span>↗</span></button>
       </div>
     </section>
 
-    <section class="game-section hidden" id="gameSection">
-      <div class="game-topline"><span class="eyebrow">02 / DIPLOMACY HAS FAILED</span><div id="timer">60</div><span class="eyebrow">FIRST TO ZERO LOSES</span></div>
-      <div class="health-row">
-        <div class="health-block"><div class="health-name"><b id="fightName1">PLAYER ONE</b><span id="healthText1">100%</span></div><div class="health-track"><div id="health1" class="health-fill health-blue"></div></div></div>
-        <div class="health-block right"><div class="health-name"><b id="fightName2">PLAYER TWO</b><span id="healthText2">100%</span></div><div class="health-track"><div id="health2" class="health-fill health-pink"></div></div></div>
+    <section class="fight-screen hidden" id="fightScreen">
+      <div class="fight-hud">
+        <div class="combatant-hud p1-hud">
+          <div class="hud-identity"><span class="hud-icon" id="hudIcon1">🦅</span><div><b id="hudName1">THE DONALD</b><small id="hudTitle1">CHALLENGER A</small></div><strong class="round-score" id="score1">0</strong></div>
+          <div class="health-shell"><div class="health-fill health-a" id="health1"></div><span id="healthNum1">100</span></div>
+          <div class="meter-shell"><div id="meter1" class="meter-fill"></div></div>
+        </div>
+        <div class="fight-clock"><small>ROUND</small><b id="roundNum">1</b><strong id="clock">99</strong><small id="roundLabel">READY</small></div>
+        <div class="combatant-hud p2-hud">
+          <div class="hud-identity"><strong class="round-score" id="score2">0</strong><div><b id="hudName2">ELON MUSK</b><small id="hudTitle2">CHALLENGER B</small></div><span class="hud-icon" id="hudIcon2">🚀</span></div>
+          <div class="health-shell"><div class="health-fill health-b" id="health2"></div><span id="healthNum2">100</span></div>
+          <div class="meter-shell"><div id="meter2" class="meter-fill"></div></div>
+        </div>
       </div>
-      <div class="battlefield summit" id="battlefield">
-        <div class="stage-title" id="stageTitle">EMERGENCY WORLD SUMMIT</div>
-        <div class="crowd">📸　📸　📸　📸　📸</div>
-        <div class="fighter fighter-one" id="fighter1"><div class="speech" id="speech1">I have a concept of a plan!</div><div class="fighter-avatar" id="avatar1">🦅</div><div class="fighter-shadow"></div><div class="fighter-tag" id="tag1">P1</div></div>
-        <div class="fighter fighter-two" id="fighter2"><div class="speech" id="speech2">The future is ... lagging.</div><div class="fighter-avatar" id="avatar2">🚀</div><div class="fighter-shadow"></div><div class="fighter-tag" id="tag2">P2</div></div>
-        <div class="impact" id="impact">BONK!</div>
-        <div class="floor-line"></div>
+
+      <div class="stage-wrap">
+        <canvas id="gameCanvas" width="1000" height="520" aria-label="Two-player fighting game arena"></canvas>
+        <div class="stage-vignette"></div>
+        <div class="stage-caption"><span id="arenaName">THE EMERGENCY SUMMIT</span><span>WORLD TOUR · NO RULES OF ENGAGEMENT</span></div>
       </div>
-      <div class="controls-hint"><span><kbd>A</kbd><kbd>D</kbd> move <kbd>W</kbd> jump <kbd>F</kbd> attack</span><span><kbd>←</kbd><kbd>→</kbd> move <kbd>↑</kbd> jump <kbd>L</kbd> attack</span></div>
-      <div class="mobile-controls"><button data-key="a">◀</button><button data-key="w">▲</button><button data-key="d">▶</button><button data-key="f">P1 BONK</button><button data-key="ArrowLeft">◀</button><button data-key="ArrowUp">▲</button><button data-key="ArrowRight">▶</button><button data-key="l">P2 BONK</button></div>
-      <div class="game-bottom"><p id="announcer">The cameras are rolling. Please behave like adults. (They won't.)</p><button id="rematchBtn" class="secondary-btn">REMATCH ↻</button></div>
+
+      <div class="fight-info">
+        <p id="commentary">FIGHT! Make your press secretary nervous.</p>
+        <div class="legend">
+          <span><i class="legend-dot one"></i> P1</span><span><i class="legend-dot two"></i> P2</span>
+          <span class="legend-note">BLOCK LOW. PUNISH WHIFFS. BUILD METER.</span>
+        </div>
+      </div>
+
+      <div class="controls-panel">
+        <div class="control-group">
+          <b>PLAYER 1</b>
+          <div class="keyline"><kbd>A</kbd><kbd>D</kbd> MOVE <kbd>W</kbd> JUMP <kbd>S</kbd> CROUCH</div>
+          <div class="keyline"><kbd>Q</kbd> BLOCK <kbd>F</kbd> LIGHT <kbd>G</kbd> HEAVY <kbd>H</kbd> SPECIAL</div>
+        </div>
+        <div class="control-group p2-keys">
+          <b>PLAYER 2</b>
+          <div class="keyline"><kbd>←</kbd><kbd>→</kbd> MOVE <kbd>↑</kbd> JUMP <kbd>↓</kbd> CROUCH</div>
+          <div class="keyline"><kbd>I</kbd> BLOCK <kbd>J</kbd> LIGHT <kbd>K</kbd> HEAVY <kbd>L</kbd> SPECIAL</div>
+        </div>
+      </div>
+
+      <div class="touch-controls">
+        <div class="touch-side"><b>P1</b><div class="touch-row"><button data-key="a">◀</button><button data-key="w">JUMP</button><button data-key="d">▶</button><button data-key="q">GUARD</button></div><div class="touch-row"><button data-key="f">LIGHT</button><button data-key="g">HEAVY</button><button data-key="h">SPECIAL</button></div></div>
+        <div class="touch-side"><b>P2</b><div class="touch-row"><button data-key="ArrowLeft">◀</button><button data-key="ArrowUp">JUMP</button><button data-key="ArrowRight">▶</button><button data-key="i">GUARD</button></div><div class="touch-row"><button data-key="j">LIGHT</button><button data-key="k">HEAVY</button><button data-key="l">SPECIAL</button></div></div>
+      </div>
+      <div class="fight-actions"><button class="quiet-btn" id="backBtn">← CHARACTER SELECT</button><button class="quiet-btn" id="restartBtn">RESTART MATCH ↻</button></div>
     </section>
 
-    <section class="rules">
-      <div><span class="eyebrow">THE RULES</span><h3>It's not that deep.<br>It's somehow still geopolitics.</h3></div>
-      <p>Move, jump, and bonk your opponent. Land close-range hits to drain their ego meter. This is a fictional parody game: catchlines and character stats are jokes, not quotes or endorsements.</p>
+    <section class="footer-note">
+      <div><span class="section-id">THE RULES OF ENGAGEMENT</span><h3>Footsies. Frames. Finishers.</h3></div>
+      <p>Walk, dash, jump, crouch and guard. Mix light and heavy attacks, punish recovery, and spend your meter on a long-range special. First to two rounds wins. All characters are fictionalized parody avatars; their catchlines are invented.</p>
     </section>
-    <footer>MADE FOR THE MEMES, NOT THE MINUTES. <span>NO REAL DIPLOMATS WERE BONKED.</span></footer>
+    <footer><span>WORLD DOMINATION DUEL © 2026</span><span>NO ACTUAL DIPLOMATS WERE HARMED IN THIS MATCH.</span></footer>
   </main>
-  <div class="result-overlay hidden" id="resultOverlay"><div class="result-card"><div class="eyebrow">THE PEOPLE HAVE DECIDED</div><div class="result-emoji" id="resultEmoji">🏆</div><h2 id="resultTitle">A LANDSLIDE VICTORY</h2><p id="resultCopy">The group chat will hear about this.</p><button id="playAgain" class="start-btn">RUN IT BACK ↗</button></div></div>
+
+  <div class="overlay hidden" id="roundOverlay"><div class="overlay-card"><small id="overlayEyebrow">ROUND 1</small><h2 id="overlayTitle">READY?</h2><p id="overlayText">Take your positions.</p><button id="overlayBtn" class="play-btn hidden">NEXT ROUND ↗</button></div></div>
   <script src="game.js"></script>
 </body>
 </html>
